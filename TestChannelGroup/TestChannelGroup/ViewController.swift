@@ -87,7 +87,8 @@ class ViewController: UIViewController {
     
     func publishButtonTapped(sender: UIButton) {
 //        Network.shared.endpointPostPublish(to: "Test", with: "Hello, world!")
-        let channel = "Test"
+//        let channel = "Test"
+        let channel = UUID().uuidString
         let currentTimeString = timeFormatter.string(from: Date())
         let message = "Hello, world! \(currentTimeString)"
         Network.shared.endpointPostPublish(to: channel, with: message) { (result) -> (Void) in

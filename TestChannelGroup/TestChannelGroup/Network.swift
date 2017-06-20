@@ -17,6 +17,7 @@ class Network: NSObject {
     
     override required init() {
         let config = PNConfiguration(publishKey: "pub-c-9d718298-ebb9-4e82-92c3-5cb856682288", subscribeKey: "sub-c-7c127a94-55e2-11e7-bc9c-0619f8945a4f")
+        config.uuid = UUID().uuidString
         config.stripMobilePayload = false
         self.client = PubNub.clientWithConfiguration(config)
         super.init()
@@ -65,6 +66,7 @@ extension Network {
         requestURL.scheme = "https"
         requestURL.host = "pubsub.pubnub.com"
         requestURL.path = "/v1/blocks/sub-key/sub-c-7c127a94-55e2-11e7-bc9c-0619f8945a4f/publish"
+//        requestURL.path = "/v1/blocks/sub-key/sub-c-7c127a94-55e2-11e7-bc9c-0619f8945a4f/channelGroupAndPublish"
         requestURL.queryItems = [
             URLQueryItem(name: "sender", value: self.client.uuid()),
             URLQueryItem(name: "channel", value: channel)
